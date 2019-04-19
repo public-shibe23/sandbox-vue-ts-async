@@ -1,10 +1,11 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import ProductList from "./store/ProductList";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {},
-  mutations: {},
-  actions: {}
+  modules: {
+    ProductList
+  }
 });
