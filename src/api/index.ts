@@ -16,5 +16,5 @@ function get(url: string, params?: object) {
 export async function fetchProducts(params?: object) {
   const URL = `${BASE_URL}/data`;
   const res = await get(URL, params);
-  return res.data;
+  return res.data.products;
 }
