@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="field">
-      <button class="button is-primary is-outlined" @click="totalPrice">Search</button>
+      <button class="button is-primary is-outlined" @click="fetch">Search</button>
     </div>
     <table class="table is-fullwidth" v-if="products.length">
       <tr>
@@ -22,27 +22,27 @@
         <td>{{ product.id }}</td>
         <td>{{ product.name }}</td>
         <td>{{ product.stock }}</td>
-        <td>{{ product.price }}</td>
+        <td>&yen; {{ product.price }}</td>
       </tr>
     </table>
+    <div class="box">Total: &yen; {{totalPrice}}</div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { IProductListState, IProductState } from '@/store/ProductList'
+import { IProductListState, IProductState } from "@/store/ProductList";
 
 @Component
 export default class ProductList extends Vue {
-  @Prop() private products!: IProductListState;
+  @Prop() private products!: IProductState[];
 
-  totalPrice(){
-    let total: number = 0
-    console.log( this.products )
-    // for (let i in this.products){
-    //   total += product
-    // }
-    return total
+  get totalPrice() {
+    let total: number = 0;
+    this.products.forEach((value, index) => {
+      total += value.price;
+    });
+    return total;
   }
 
   fetch(): void {

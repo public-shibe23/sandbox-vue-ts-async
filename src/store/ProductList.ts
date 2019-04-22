@@ -9,7 +9,7 @@ import {
 } from "vuex-module-decorators";
 import store from "@/store";
 export interface IProductListState {
-  products: IProductState;
+  products: IProductState[];
 }
 export interface IProductState {
   id: number;
@@ -20,12 +20,7 @@ export interface IProductState {
 
 @Module({ dynamic: true, store, name: "productList", namespaced: true })
 class ProductList extends VuexModule implements IProductListState {
-  products: IProductState = {
-    id: 0,
-    name: "",
-    stock: 0,
-    price: 0
-  };
+  products: IProductState[] = [];
 
   @Action({ commit: "SET_ITEMS" })
   public async FETCH_PRODUCTS() {
