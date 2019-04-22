@@ -9,25 +9,34 @@ import {
 } from "vuex-module-decorators";
 import store from "@/store";
 export interface IProductListState {
-  products: object
+  products: IProductState;
+}
+export interface IProductState {
+  id: number;
+  name: string;
+  stock: number;
+  price: number;
 }
 
 @Module({ dynamic: true, store, name: "productList", namespaced: true })
 class ProductList extends VuexModule implements IProductListState {
+  products: IProductState = {
+    id: 0,
+    name: "",
+    stock: 0,
+    price: 0
+  };
 
-  products: object = {} 
-  
-  @Action({commit: 'SET_ITEMS'})
-  public async FETCH_PRODUCTS(){
+  @Action({ commit: "SET_ITEMS" })
+  public async FETCH_PRODUCTS() {
     const products = await fetchProducts();
-    return {products}
+    return { products };
   }
-  
+
   @Mutation
   public SET_ITEMS(payload: IProductListState) {
-        this.products = payload.products;
+    this.products = payload.products;
   }
 }
 
 export const ProductListModule = getModule(ProductList);
-
