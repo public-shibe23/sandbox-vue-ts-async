@@ -1,4 +1,5 @@
 # sandbox-vue-ts-async
+[Vue.js + Vuex + TypeScriptでStoreの値に型をつけるまでにやったこと](https://qiita.com/shibe23/items/43089f95f295a3bf3d46)
 
 ## Project setup
 ```
